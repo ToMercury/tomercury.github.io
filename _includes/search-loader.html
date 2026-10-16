@@ -43,7 +43,50 @@
             return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
           }
         }
+
+        if (prop === 'content') {
+          return buildSnippet(value);
+        }
       }
     });
+
+    /*
+     * Extract a context snippet around the first occurrence of the query:
+     * ~50 chars before, the match wrapped in <mark>, ~200 chars after.
+     * Start snaps back to a word / CJK sentence boundary. Falls back to the
+     * beginning of the content when the query only matched title/categories.
+     */
+    function buildSnippet(text) {
+      const BEFORE = 50;
+      const AFTER = 200;
+      const BREAKS = new Set([
+        ' ', '\t', '\n',
+        '，', '。', '！', '？', '；', '：', '、',
+        ',', '.', '!', '?', ';', ':'
+      ]);
+
+      const input = document.getElementById('search-input').value.trim();
+      const content = String(text || '');
+      const idx = content.toLowerCase().indexOf(input.toLowerCase());
+
+      if (!input || idx === -1) {
+        return content.length > BEFORE + AFTER
+          ? content.substring(0, BEFORE + AFTER) + '…'
+          : content;
+      }
+
+      let start = Math.max(idx - BEFORE, 0);
+      while (start > 0 && !BREAKS.has(content[start - 1])) {
+        start--;
+      }
+
+      const end = Math.min(idx + input.length + AFTER, content.length);
+      const prefix = (start > 0 ? '…' : '') + content.substring(start, idx);
+      const hit = content.substring(idx, idx + input.length);
+      const suffix =
+        content.substring(idx + input.length, end) + (end < content.length ? '…' : '');
+
+      return `${prefix}<mark>${hit}</mark>${suffix}`;
+    }
   });
 </script>

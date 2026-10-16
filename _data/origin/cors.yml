@@ -30,7 +30,10 @@ fontawesome:
   css: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/css/all.min.css
 
 search:
-  js: https://cdn.jsdelivr.net/npm/simple-jekyll-search@1/dest/simple-jekyll-search.min.js
+  # Forked copy with literal (phrase) matching fixed — upstream's published
+  # dest build never picked up the fix (see christian-fei/Simple-Jekyll-Search#166).
+  # Local path: assets/js/vendor/ (NOT assets/lib — that's a git submodule).
+  js: /assets/js/vendor/simple-jekyll-search.min.js
 
 mermaid:
   js: https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js
