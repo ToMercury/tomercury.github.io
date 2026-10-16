@@ -6,7 +6,7 @@ Personal blog + portfolio (`tomercury.github.io`, live at https://tomercury.gith
 [jekyll-theme-chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) theme source (v7.6.0)** — not the
 "starter" template. There is no separate site repo vs theme repo:
 
-- Site content/config: `_posts/`, `_tabs/`, `_data/skills.yml`, `_config.yml` (lang `en`, timezone `Asia/Shanghai`)
+- Site content/config: `_posts/`, `_tabs/`, `_config.yml` (lang `en`, timezone `Asia/Shanghai`)
 - Theme code you can edit in place: `_layouts/`, `_includes/`, `_sass/`, `_javascript/`, `_data/`
 - The sidebar is a portfolio nav: HOME (`index.md` = 关于我; must stay `.md` — root `.html` pages don't get
   Markdown-converted) + `_tabs/` = research / internships / skills / projects / posts (`_tabs/posts.md`
@@ -84,8 +84,7 @@ There are no unit tests. `npm test` does not build anything.
   disabled in `_config.yml` (`paginate` commented out): jekyll-paginate v1 only paginates a root
   `index.html` template, and the root is now `index.md` (关于我). Restoring paginated posts to `/`
   requires an `index.html` template (plain HTML or renamed back) plus re-enabling `paginate`.
-- Right-sidebar modules live in `_layouts/default.html` (`.access` block); the skills keyword cloud reads
-  `_data/skills.yml` via `_includes/panel-skills.html`.
+- Right-sidebar modules live in `_layouts/default.html` (`.access` block).
 - `assets/lib` is a git submodule (chirpy-static-assets) used only when
   `assets.self_host.enabled: true` in `_config.yml` (currently off; the site loads libs from CDN).
   CI does not check it out — don't enable self-hosting without adding `submodules: true` to the

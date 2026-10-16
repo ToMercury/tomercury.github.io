@@ -43,7 +43,7 @@
 ├── 【主题源码】_ 开头 = 引擎内部目录，Jekyll 不会原样拷贝发布
 │   ├── _layouts/  _includes/     模板与片段（改外观动这里）
 │   ├── _sass/  _javascript/      样式 / JS 源码（产物 → assets/js/dist）
-│   ├── _data/                    数据（skills.yml、locales、contact…）
+│   ├── _data/                    数据（locales、contact…）
 │   ├── _tabs/                    ↑ 既算源码目录也是页面目录
 │   └── _plugins/                 构建期 Ruby 钩子
 │
@@ -160,12 +160,11 @@ defaults:
 ```liquid
 {% include_cached update-list.html %}     ← 「最近更新」列表（数据=site.posts，条数见该文件 MAX_SIZE）
 {% include_cached trending-tags.html %}   ← 「热门标签」（按文章数统计）
-{% include panel-skills.html %}           ← 「技能关键词云」（数据=_data/skills.yml）
 <!-- 然后按 layout.panel_includes 追加：post 页多一个「文章内容」TOC -->
 ```
 
 **增删右栏模块 = 在 `default.html` 这个块里增删一行 `include`**，新建对应
-`_includes/xxx.html` 即可；技能云数据单独维护在 `_data/skills.yml`（`name` + `weight: 1~3` 字号）。
+`_includes/xxx.html` 即可。
 
 ---
 
@@ -183,7 +182,6 @@ defaults:
 | 左栏导航的项 / 顺序 / 图标 / 文案 | `_tabs/*.md` 的 `order` / `icon` / `title`；HOME 项在 `_includes/sidebar.html` |
 | 左栏底部社交按钮 | `_data/contact.yml` |
 | 右栏模块的增删 / 顺序 | `_layouts/default.html` 的 `.access` 块 |
-| 右栏「技能云」的词条 | `_data/skills.yml` |
 | 右栏「最近更新」条数 | `_includes/update-list.html` 里的 `MAX_SIZE` |
 | 页脚版权文字/链接 | `_config.yml` 的 `social:` + `_includes/footer.html` |
 | 界面文案（导航、「最近更新」、「搜索」…） | `_data/locales/en.yml`（`_config.yml` 里 `lang: en` 已切原版英文；改回中文界面需同时把 tab `title` 换回中文） |
