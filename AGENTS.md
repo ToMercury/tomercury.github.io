@@ -9,13 +9,17 @@ Personal blog + portfolio (`tomercury.github.io`, live at https://tomercury.gith
 - Site content/config: `_posts/`, `_tabs/`, `_config.yml` (lang `en`, timezone `Asia/Shanghai`)
 - Theme code you can edit in place: `_layouts/`, `_includes/`, `_sass/`, `_javascript/`, `_data/`
 - The sidebar is a portfolio nav: HOME (`index.md` = 关于我; must stay `.md` — root `.html` pages don't get
-  Markdown-converted) + `_tabs/` = research / internships / skills / projects / posts (`_tabs/posts.md`
-  uses `layout: home` and lists all posts at `/posts/`). UI chrome is English (`lang: en`); page
-  bodies stay Chinese.
-- Root `categories.html` / `tags.html` / `archives.html` are NOT tabs — archive indexes kept out of the
-  sidebar. The `Posts` page shows a `Browse: Archives · Categories · Tags` row via
-  `_includes/browse-links.html` + front matter `browse_links: true` (rendered by `_layouts/home.html`).
-  Don't delete them.
+  Markdown-converted) + `_tabs/` = research / internships / skills / projects / posts / archives /
+  categories / tags (`_tabs/posts.md` uses `layout: home` and lists all posts at `/posts/`). UI chrome is
+  English (`lang: en`); page bodies stay Chinese.
+- Sidebar tab visibility is a one-line switch in `_config.yml`: `nav_tabs:` keyed by the last URL segment
+  (`posts: off` hides the nav item only — the page is still built at its URL). HOME is hard-coded in
+  `_includes/sidebar.html` and cannot be switched; don't name the map `tabs` (that key is the collection).
+- `_tabs/{archives,categories,tags}.md` are sidebar tabs AND the back-link targets for jekyll-archives
+  pages (`/tags/<name>/`, `/categories/<name>/`) — don't delete them or change their permalinks. The
+  `Posts` page additionally shows a `Browse: Archives · Categories · Tags` row via
+  `_includes/browse-links.html` + front matter `browse_links: true` (rendered by `_layouts/home.html`),
+  kept on purpose even though the three are sidebar tabs now.
 - Site-structure / "which file do I edit" guide for humans: `ARCHITECTURE.md` (root, excluded from output).
 - Upstream theme docs (README, `docs/`, the Chirpy wiki) describe the upstream project; trust the code here.
 
@@ -65,7 +69,8 @@ There are no unit tests. `npm test` does not build anything.
   husky `commit-msg` hook runs commitlint and rejects anything else.
 - Posts live in `_posts/` as `YYYY-M-D-title.md`; default permalink is `/posts/:title/` (don't change
   the permalink pattern — existing links depend on it). Tags are conventionally lowercase.
-- `_tabs/` pages are ordered by their `order` front matter (`collections.tabs` in `_config.yml`).
+- `_tabs/` pages are ordered by their `order` front matter (`collections.tabs` in `_config.yml`); a new
+  `_tabs/foo.md` shows up in the sidebar automatically (hidden only if `nav_tabs: foo: off` is set).
 - New files under `_includes/`, `_layouts/`, `_sass/`, `assets/`, `_data/locales`, `_data/origin`
   must be `git add`ed: the gemspec packages only `git ls-files` output.
 

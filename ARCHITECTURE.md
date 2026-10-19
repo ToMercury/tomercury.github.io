@@ -35,9 +35,7 @@
 根目录/
 ├── 【页面】带 front matter、会生成网页的源文件 → 放根目录（或 _tabs/）
 │   ├── index.md              关于我 → /
-│   ├── categories.html       分类总索引 → /categories/（非导航，归档回链用）
-│   ├── tags.html             标签总索引 → /tags/（同上）
-│   ├── _tabs/*.md            左侧导航 5 个栏目（独立页收进 collection 才能排序/出导航）
+│   ├── _tabs/*.md            左侧导航 8 个栏目（含 Archives/Categories/Tags 索引页）
 │   └── _posts/*.md           博文（Jekyll 规定的固定目录名）
 │
 ├── 【主题源码】_ 开头 = 引擎内部目录，Jekyll 不会原样拷贝发布
@@ -117,9 +115,9 @@ _layouts/compress.html        ← 最外层：HTML 压缩
 | `/projects/` | `_tabs/projects.md` | page | Projects |
 | `/posts/` | `_tabs/posts.md` | home | Posts（文章列表） |
 | `/posts/<标题>/` | `_posts/YYYY-M-D-title.md` | post | 从 /posts/ 或文章内进入 |
-| `/archives/` | `archives.html`（根目录） | archives | **不是导航项**，从 /posts/ 顶部 Browse 链接进入 |
-| `/categories/` | `categories.html`（根目录） | categories | **不是导航项**，仅给归档页回链用 |
-| `/tags/` | `tags.html`（根目录） | tags | 同上 |
+| `/archives/` | `_tabs/archives.md` | archives | Archives |
+| `/categories/` | `_tabs/categories.md` | categories | Categories |
+| `/tags/` | `_tabs/tags.md` | tags | Tags |
 | `/categories/<名>/`、`/tags/<名>/` | **无源文件**，`jekyll-archives` 按文章 front matter 自动生成 | category/tag | — |
 | `/404.html` | `assets/404.html` | page | — |
 | `/feed.xml` | `assets/feed.xml` | compress | — |
@@ -153,6 +151,8 @@ defaults:
   - 文案 ← 优先查 locales，查不到就用 front matter `title:`（当前 5 个 tab 都走后者）
   - 高亮 ← `tab.url == page.url`
 - **增删/排序/改名导航 = 只改 `_tabs/*.md`**（新建一个 md 就多一个导航项）。
+- **显示/隐藏某一项** = `_config.yml` 的 `nav_tabs:`（键为 URL 最后一段，如 `posts: off`）；
+  只隐藏侧栏项，页面仍会生成。HOME 硬编码，不能关。
 - 底部社交图标 ← `_data/contact.yml`；头像/站名/副标题 ← `_config.yml` 的 `avatar/title/tagline`。
 
 ### 右栏（`_layouts/default.html` 的 `.access` 块）
@@ -179,7 +179,7 @@ defaults:
 | 文章列表页（/posts/）的样子 | `_tabs/posts.md`（front matter）+ `_layouts/home.html`（渲染逻辑） |
 | 文章列表顶部的 Browse 链接 | `_includes/browse-links.html`（由 `_tabs/posts.md` 的 `browse_links: true` 开关，`_layouts/home.html` 渲染） |
 | 年份归档页（/archives/，不进侧栏） | 根目录 `archives.html`（与 `categories.html`/`tags.html` 同一模式） |
-| 左栏导航的项 / 顺序 / 图标 / 文案 | `_tabs/*.md` 的 `order` / `icon` / `title`；HOME 项在 `_includes/sidebar.html` |
+| 左栏导航的项 / 顺序 / 图标 / 文案 / 显隐 | `_tabs/*.md` 的 `order` / `icon` / `title`；显隐用 `_config.yml` 的 `nav_tabs`（如 `posts: off`）；HOME 项在 `_includes/sidebar.html` |
 | 左栏底部社交按钮 | `_data/contact.yml` |
 | 右栏模块的增删 / 顺序 | `_layouts/default.html` 的 `.access` 块 |
 | 右栏「最近更新」条数 | `_includes/update-list.html` 里的 `MAX_SIZE` |
@@ -198,7 +198,7 @@ defaults:
 | 访问统计 | `_config.yml` 的 `analytics.` + `_includes/analytics/` |
 | PWA（安装/离线缓存） | `_config.yml` 的 `pwa.` + `_javascript/pwa/` + `_config.yml` 里的 `pwa.cache.exclude` |
 | 404 页 | `assets/404.html` |
-| 新增一个"顶级页面"但不放进导航 | 仿照根目录 `categories.html`/`tags.html`：front matter 里 `permalink` + 不要放进 `_tabs/` |
+| 新增一个"顶级页面"但不放进导航 | 在根目录新建带 front matter + `permalink` 的页面，**不要**放进 `_tabs/` |
 | 让某个根目录文件**不被发布** | `_config.yml` 的 `exclude:` 列表（新增非内容文件都要加，参考 `AGENTS.md`/`ARCHITECTURE.md` 的处理） |
 
 ---

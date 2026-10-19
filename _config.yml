@@ -159,6 +159,20 @@ pwa:
     deny_paths:
       # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
+# Sidebar tab visibility › set a tab to `off` to hide it from the sidebar.
+# Key = last segment of the tab URL (e.g. `posts` for /posts/); omitted = visible.
+# This only hides the nav item — the page itself is still built and reachable.
+# HOME is hard-coded in _includes/sidebar.html and cannot be switched here.
+nav_tabs:
+  # research: off
+  # internships: off
+  # skills: off
+  # projects: off
+  # posts: off
+  # archives: off
+  # categories: off
+  # tags: off
+
 # paginate: 10  # 已停用：jekyll-paginate v1 只能以根 index.html 为模板分页，
 #               # 而根页面现为 index.md（关于我），博文列表在 /posts/（不分页）。
 
@@ -230,6 +244,7 @@ exclude:
   - purgecss.js
   - "*.config.js"
   - "package*.json"
+  - info.md
 
 jekyll-archives:
   enabled: [categories, tags]

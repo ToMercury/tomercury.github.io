@@ -1,5 +1,5 @@
 ---
-title: 测试文章：Hello Chirpy
+title: Hello Chirpy
 description: 一篇用来观察网站各功能渲染效果的测试文章，看完后可以删除。
 date: 2026-10-16 12:00:00 +0800
 categories: [Blog, Test]

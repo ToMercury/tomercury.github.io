@@ -27,6 +27,9 @@
       </li>
       <!-- the real tabs -->
       {% for tab in site.tabs %}
+        {% assign tab_key = tab.url | split: '/' | last %}
+        {% assign tab_state = site.nav_tabs[tab_key] %}
+        {% if tab_state == false or tab_state == 'off' %}{% continue %}{% endif %}
         <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
           <a href="{{ tab.url | relative_url }}" class="nav-link">
             <i class="fa-fw {{ tab.icon }}"></i>
