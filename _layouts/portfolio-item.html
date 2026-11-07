@@ -1,0 +1,83 @@
+---
+layout: default
+panel_includes:
+  - toc
+---
+
+{% include lang.html %}
+
+{% include toc-status.html %}
+
+<article class="px-1" data-toc="{{ enable_toc }}">
+  <!-- Back navigation breadcrumb -->
+  <div class="portfolio-back-nav mb-3">
+    <a href="{{ '/portfolio/' | relative_url }}" class="text-muted text-decoration-none small">
+      <i class="fas fa-arrow-left me-1"></i>返回作品集 (Portfolio)
+    </a>
+  </div>
+
+  <!-- Item Header -->
+  <header class="portfolio-detail-header mb-4 pb-3 border-bottom">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      {% if page.category %}
+        <span class="badge portfolio-badge">{{ page.category }}</span>
+      {% endif %}
+      {% if page.date %}
+        <span class="text-muted small">
+          <i class="far fa-calendar-alt me-1"></i>
+          {% include datetime.html date=page.date tooltip=true lang=lang %}
+        </span>
+      {% endif %}
+      {% if page.pages %}
+        <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ page.pages }}</span>
+      {% endif %}
+      {% if page.file_size %}
+        <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ page.file_size }}</span>
+      {% endif %}
+    </div>
+
+    <h1 class="dynamic-title mb-2" data-toc-skip>{{ page.title }}</h1>
+
+    {% if page.description %}
+      <p class="lead text-muted mb-3">{{ page.description }}</p>
+    {% endif %}
+
+    <!-- Action Buttons -->
+    <div class="portfolio-action-buttons d-flex flex-wrap gap-2 mt-3">
+      {% if page.download %}
+        <a href="{{ page.download | relative_url }}" download class="btn btn-primary">
+          <i class="fas fa-download me-1"></i>下载完整资源 (PDF)
+        </a>
+      {% endif %}
+      {% if page.github %}
+        <a href="{{ page.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary">
+          <i class="fab fa-github me-1"></i>GitHub 源码
+        </a>
+      {% endif %}
+      {% if page.demo %}
+        <a href="{{ page.demo }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary">
+          <i class="fas fa-external-link-alt me-1"></i>在线演示 Demo
+        </a>
+      {% endif %}
+      {% if page.doc %}
+        <a href="{{ page.doc }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-info">
+          <i class="fas fa-book-open me-1"></i>相关文档
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Tech Stack / Tags -->
+    {% if page.tags and page.tags.size > 0 %}
+      <div class="portfolio-tags mt-3">
+        {% for tag in page.tags %}
+          <span class="badge tag-badge me-1 mb-1">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <!-- Main Content Body -->
+  <div class="content">
+    {{ content }}
+  </div>
+</article>

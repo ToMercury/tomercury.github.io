@@ -164,14 +164,14 @@ pwa:
 # This only hides the nav item — the page itself is still built and reachable.
 # HOME is hard-coded in _includes/sidebar.html and cannot be switched here.
 nav_tabs:
-  # research: off
-  # internships: off
+  research: off
+  internships: off
   # skills: off
-  # projects: off
+  # portfolio: off
   # posts: off
   # archives: off
   # categories: off
-  # tags: off
+  tags: off
 
 # paginate: 10  # 已停用：jekyll-paginate v1 只能以根 index.html 为模板分页，
 #               # 而根页面现为 index.md（关于我），博文列表在 /posts/（不分页）。
@@ -197,6 +197,10 @@ collections:
   tabs:
     output: true
     sort_by: order
+  portfolio:
+    output: true
+    sort_by: order
+    permalink: /portfolio/:title/
 
 defaults:
   - scope:
@@ -209,6 +213,12 @@ defaults:
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
       permalink: /posts/:title/
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: portfolio-item
+      toc: true
   - scope:
       path: _drafts
     values:
