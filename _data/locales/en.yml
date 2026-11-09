@@ -17,6 +17,7 @@ tabs:
   about: About
   posts: Posts
   portfolio: Portfolio
+  skills: Skills
 
 # the text displayed in the search bar & search results
 search:

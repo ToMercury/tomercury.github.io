@@ -17,6 +17,7 @@ tabs:
   about: 关于
   posts: Posts
   portfolio: Portfolio
+  skills: 技能
 
 # the text displayed in the search bar & search results
 search:
