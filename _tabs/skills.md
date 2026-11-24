@@ -64,10 +64,10 @@ order: 3
     </div>
   </div>
 
-  <!-- 卡片 2: AI Infrastructure -->
+  <!-- 卡片 2: AI Infra -->
   <div class="matrix-card card-ai">
     <div class="matrix-header">
-      <span class="matrix-title"><i class="fas fa-brain"></i> AI Infrastructure</span>
+      <span class="matrix-title"><i class="fas fa-brain"></i> AI Infra</span>
       <span class="matrix-badge badge-ai">熟练 / Proficient</span>
     </div>
     <p class="matrix-desc">覆盖大模型推理全栈加速、自定义硬件算子开发与分布式显存资源调度。</p>

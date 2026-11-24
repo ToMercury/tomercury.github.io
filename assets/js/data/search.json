@@ -4,14 +4,21 @@ swcache: true
 ---
 
 [
-  {% for post in site.posts %}
+  {% assign all_items = site.posts | concat: site.portfolio %}
+  {% for item in all_items %}
   {
-    "title": {{ post.title | jsonify }},
-    "url": {{ post.url | relative_url | jsonify }},
-    "categories": {{ post.categories | join: ', ' | jsonify }},
-    "tags": {{ post.tags | join: ', ' | jsonify }},
-    "date": {{ post.date | jsonify }},
-    {% capture content -%}{% include post-summary.html full_text=true %}{%- endcapture -%}
+    "title": {{ item.title | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    {% if item.categories %}
+      "categories": {{ item.categories | join: ', ' | jsonify }},
+    {% elsif item.category %}
+      "categories": {{ item.category | jsonify }},
+    {% else %}
+      "categories": "",
+    {% endif %}
+    "tags": {{ item.tags | join: ', ' | jsonify }},
+    "date": {{ item.date | jsonify }},
+    {% capture content -%}{% include post-summary.html post=item full_text=true %}{%- endcapture -%}
     "content": {{ content | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}

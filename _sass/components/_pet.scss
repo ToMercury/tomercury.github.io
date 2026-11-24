@@ -3,21 +3,20 @@
 
 /* Pet Container Floating Widget */
 .pet-container {
-  position: fixed;
-  right: 1.5rem;
-  bottom: calc(v.$footer-height-large + 0.5rem);
-  z-index: 1050;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  user-select: none;
-  touch-action: none;
-  contain: layout style;
-  transition: opacity 0.3s ease;
+  display: none;
 
   @include bp.lg {
+    display: flex;
+    position: fixed;
     right: 2.2rem;
     bottom: calc(v.$footer-height + 0.8rem);
+    z-index: 1050;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    touch-action: none;
+    contain: layout style;
+    transition: opacity 0.3s ease;
   }
 
   /* 对话气泡 (深海蓝黑玻璃设计) */
@@ -139,27 +138,26 @@
 
 /* 恢复/展开按钮 */
 .pet-restore-btn {
-  position: fixed;
-  right: 1.5rem;
-  bottom: calc(v.$footer-height-large + 0.5rem);
-  z-index: 1050;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--card-bg, #ffffff);
-  border: 1px solid var(--main-border-color, #e2e8f0);
-  box-shadow: 0 3px 12px rgb(0 0 0 / 15%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: none;
 
   @include bp.lg {
+    position: fixed;
     right: 2.2rem;
     bottom: calc(v.$footer-height + 0.8rem);
+    z-index: 1050;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--main-border-color, #e2e8f0);
+    box-shadow: 0 3px 12px rgb(0 0 0 / 15%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   &:hover {

@@ -12,7 +12,7 @@ tags: [棒针, 钩针, 玩偶, 手套, 围巾, 生活手作]
 media_subpath: /assets/img/portfolio/knitting-crochet/
 ---
 
-> 本页面为作者生活手作记录，收录日常编织的棒针穿戴物、钩针趣味玩偶及居家杂货，记录每件作品使用的线材、工具与制作心得。
+> 本页面为作者生活手作记录，收录日常编织的棒针穿戴物、钩针趣味玩偶及居家杂货，记录每件作品使用的线材、工具与制作心得等。
 {: .prompt-info }
 
 ## 一、作品展厅
@@ -26,8 +26,8 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 
 <div class="portfolio-gallery">
   <div class="gallery-item">
-    <img src="glove.webp" alt="手套成品">
-    <div class="gallery-caption">手套成品</div>
+    <img src="glove.webp" alt="猫咪手套">
+    <div class="gallery-caption">猫咪手套</div>
   </div>
   <div class="gallery-item">
     <img src="glove_half.webp" alt="细节展示">
@@ -80,7 +80,7 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 - **使用线材**：两股牛奶棉 / 四股牛奶棉（苹果绿、艾绿、雾霾蓝、肤色等）
 - **使用工具**：1.2mm / 2.5mm 软柄钩针
 - **配件用料**：玩偶塑料眼睛、定型铁丝、棉花、酒精胶、腮红
-- **心得**：身体部位采用紧密十字短针钩织，织面紧致防透棉；头发、披风、护目镜与围巾单独成型，层次分明；小王子版本采用细双股线钩织，整体更加精细。
+- **心得**：身体部位采用紧密十字短针钩织，织面紧致防透棉；头发、披风、护目镜与围巾单独成型，层次分明；小王子版本采用双股线钩织，整体更加精细。
 
 ---
 
@@ -91,8 +91,8 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 
 <div class="portfolio-gallery single-item">
   <div class="gallery-item">
-    <img src="cat_pouch.webp" alt="猫咪收纳包成品">
-    <div class="gallery-caption">猫咪收纳包成品</div>
+    <img src="cat_pouch.webp" alt="猫咪收纳包">
+    <div class="gallery-caption">猫咪收纳包</div>
   </div>
 </div>
 

@@ -1,3 +1,5 @@
+@use '../abstracts/breakpoints' as bp;
+
 /* Skills page custom styles */
 
 .skills-arch-diagram {
@@ -217,7 +219,7 @@
       margin-bottom: 0.75rem;
     }
 
-    /* 3x2 Grid for 6 skills: Single-line height, equal size, centered text */
+    /* 3x2 Grid for 6 skills on desktop, 6x1 on mobile: Single-line height, equal size, centered text */
     .matrix-chips-grid,
     .eng-chips-row {
       display: grid;
@@ -225,8 +227,8 @@
       gap: 0.65rem;
       width: 100%;
 
-      @media (max-width: 650px) {
-        grid-template-columns: repeat(2, 1fr);
+      @include bp.lt(bp.get(lg)) {
+        grid-template-columns: 1fr;
       }
 
       .m-chip {

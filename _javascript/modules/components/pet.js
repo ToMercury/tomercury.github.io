@@ -24,13 +24,13 @@ const DIALOGUES = [
   // 投资与理财生活
   '数一数赚了多少钱，去买大白饭～',
   '股票涨了！今晚加餐小鱼干～',
-  '今天亏好多，要饿肚子了QAQ～',
+  '今天亏了好多，要饿肚子了QAQ～',
   '慢慢变富，做时间的朋友～',
   '长期主义！不要被短期的波动吓跑哦～',
 
   // 个人科研、CUDA 与技术探索
   'CUDA 并行加速中... 性能 +100%！',
-  '戳我干嘛？不用优化 GPU Kernel 吗？',
+  '戳我干嘛？今天不用写代码吗？',
   '思绪咕噜咕噜冒泡中... 灵感正在浮出水面～',
   '底层软硬件协同，探索算力的极限！',
   '先想清楚架构，再动手不迟～',
@@ -44,6 +44,11 @@ const DIALOGUES = [
 ];
 
 export function initPet() {
+  // 移动端不启用桌宠
+  if (window.matchMedia('(max-width: 849px)').matches) {
+    return;
+  }
+
   const container = document.getElementById('pet-container');
   const bubble = document.getElementById('pet-bubble');
   const dialogueText = document.getElementById('pet-dialogue');
