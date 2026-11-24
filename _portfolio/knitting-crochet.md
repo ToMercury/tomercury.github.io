@@ -26,11 +26,11 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 
 <div class="portfolio-gallery">
   <div class="gallery-item">
-    <img src="glove.jpg" alt="手套成品">
+    <img src="glove.webp" alt="手套成品">
     <div class="gallery-caption">手套成品</div>
   </div>
   <div class="gallery-item">
-    <img src="glove_half.jpg" alt="细节展示">
+    <img src="glove_half.webp" alt="细节展示">
     <div class="gallery-caption">细节展示</div>
   </div>
 </div>
@@ -46,11 +46,11 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 
 <div class="portfolio-gallery">
   <div class="gallery-item">
-    <img src="fox_scarf.png" alt="小狐狸围巾">
+    <img src="fox_scarf.webp" alt="小狐狸围巾">
     <div class="gallery-caption">小狐狸围巾</div>
   </div>
   <div class="gallery-item">
-    <img src="fox_scarf_half.jpg" alt="小狐狸围巾编织过程">
+    <img src="fox_scarf_half.webp" alt="小狐狸围巾编织过程">
     <div class="gallery-caption">小狐狸围巾编织过程</div>
   </div>
 </div>
@@ -68,11 +68,11 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 
 <div class="portfolio-gallery">
   <div class="gallery-item">
-    <img src="small_prince.jpg" alt="小王子玩偶">
+    <img src="small_prince.webp" alt="小王子玩偶">
     <div class="gallery-caption">小王子玩偶</div>
   </div>
   <div class="gallery-item">
-    <img src="big_prince.jpg" alt="大王子玩偶">
+    <img src="big_prince.webp" alt="大王子玩偶">
     <div class="gallery-caption">大王子玩偶</div>
   </div>
 </div>
@@ -91,7 +91,7 @@ media_subpath: /assets/img/portfolio/knitting-crochet/
 
 <div class="portfolio-gallery single-item">
   <div class="gallery-item">
-    <img src="cat_pouch.jpg" alt="猫咪收纳包成品">
+    <img src="cat_pouch.webp" alt="猫咪收纳包成品">
     <div class="gallery-caption">猫咪收纳包成品</div>
   </div>
 </div>
