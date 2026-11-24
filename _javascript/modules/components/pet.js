@@ -37,23 +37,23 @@ export function initPet() {
   const baseSrc = avatar.src;
   const basePath = baseSrc.substring(0, baseSrc.lastIndexOf('/') + 1);
   const actions = {
-    idle: basePath + 'idle.gif',
-    'running-left': basePath + 'running-left.gif',
-    'running-right': basePath + 'running-right.gif',
-    running: basePath + 'running.gif',
-    jumping: basePath + 'jumping.gif',
-    waving: basePath + 'waving.gif',
-    waiting: basePath + 'waiting.gif',
-    failed: basePath + 'failed.gif'
+    idle: basePath + 'idle.webp',
+    'running-left': basePath + 'running-left.webp',
+    'running-right': basePath + 'running-right.webp',
+    running: basePath + 'running.webp',
+    jumping: basePath + 'jumping.webp',
+    waving: basePath + 'waving.webp',
+    waiting: basePath + 'waiting.webp',
+    failed: basePath + 'failed.webp'
   };
 
   let bubbleTimer = null;
   let actionTimer = null;
   let wanderTimer = null;
 
-  // 坐标与拖拽状态
-  let posX = window.innerWidth - 220;
-  let posY = window.innerHeight - 240;
+  // 坐标与拖拽状态 (按 0.8x 边界计算)
+  let posX = window.innerWidth - 180;
+  let posY = window.innerHeight - 200;
   let isDragging = false;
   let dragMoved = false;
   let startPointerX = 0;
@@ -67,8 +67,8 @@ export function initPet() {
     try {
       const parsed = JSON.parse(savedPos);
       if (typeof parsed.x === 'number' && typeof parsed.y === 'number') {
-        posX = Math.min(Math.max(10, parsed.x), window.innerWidth - 200);
-        posY = Math.min(Math.max(10, parsed.y), window.innerHeight - 220);
+        posX = Math.min(Math.max(10, parsed.x), window.innerWidth - 170);
+        posY = Math.min(Math.max(10, parsed.y), window.innerHeight - 190);
       }
     } catch {
       // 容错使用默认坐标
@@ -88,8 +88,8 @@ export function initPet() {
 
   // 响应窗口大小调整
   window.addEventListener('resize', () => {
-    const maxX = window.innerWidth - 200;
-    const maxY = window.innerHeight - 220;
+    const maxX = window.innerWidth - 170;
+    const maxY = window.innerHeight - 190;
     const boundedX = Math.min(Math.max(10, posX), Math.max(10, maxX));
     const boundedY = Math.min(Math.max(10, posY), Math.max(10, maxY));
     applyPosition(boundedX, boundedY);
@@ -140,7 +140,7 @@ export function initPet() {
 
     // 边界限制
     const minX = 20;
-    const maxX = window.innerWidth - 210;
+    const maxX = window.innerWidth - 180;
     if (targetX < minX) targetX = minX + 50;
     if (targetX > maxX) targetX = maxX - 50;
 
@@ -219,8 +219,8 @@ export function initPet() {
         dragMoved = true;
       }
 
-      const newX = Math.min(Math.max(10, startPosX + dx), window.innerWidth - 200);
-      const newY = Math.min(Math.max(10, startPosY + dy), window.innerHeight - 220);
+      const newX = Math.min(Math.max(10, startPosX + dx), window.innerWidth - 170);
+      const newY = Math.min(Math.max(10, startPosY + dy), window.innerHeight - 190);
       applyPosition(newX, newY);
     };
 
