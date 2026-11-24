@@ -4,20 +4,14 @@
 /* Pet Container Floating Widget */
 .pet-container {
   position: fixed;
-  z-index: 99;
+  z-index: 1050;
   display: flex;
   flex-direction: column;
   align-items: center;
   user-select: none;
-  cursor: grab;
   touch-action: none;
   contain: layout style;
   transition: opacity 0.3s ease;
-
-  &.is-dragging {
-    cursor: grabbing;
-    transition: none;
-  }
 
   /* 对话气泡 (深海蓝黑玻璃设计) */
   .pet-bubble {
@@ -67,6 +61,11 @@
     display: inline-block;
     filter: drop-shadow(0 4px 10px rgb(0 0 0 / 18%));
     transform-origin: bottom center;
+    cursor: grab;
+
+    &.is-dragging {
+      cursor: grabbing;
+    }
 
     .pet-avatar {
       width: 88px;
@@ -97,8 +96,9 @@
     position: absolute;
     top: -6px;
     right: -6px;
-    width: 20px;
-    height: 20px;
+    z-index: 10;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: var(--button-bg, #ffffff);
     border: 1px solid var(--main-border-color, #cccccc);
@@ -106,16 +106,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 11px;
     padding: 0;
     cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 1px 4px rgb(0 0 0 / 15%);
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
 
     &:hover {
+      opacity: 1;
       color: #e53e3e;
       transform: scale(1.15);
+      background-color: var(--card-bg, #ffffff);
     }
   }
 
@@ -129,7 +131,7 @@
   position: fixed;
   right: 1.5rem;
   bottom: calc(v.$footer-height-large + 0.5rem);
-  z-index: 99;
+  z-index: 1050;
   width: 42px;
   height: 42px;
   border-radius: 50%;

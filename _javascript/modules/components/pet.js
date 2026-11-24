@@ -195,8 +195,10 @@ export function initPet() {
 
   // 拖拽逻辑 (Pointer Events 跨桌面端/移动端)
   avatarWrapper.addEventListener('pointerdown', (e) => {
-    // 排除关闭按钮点击
-    if (e.target.closest('#pet-toggle-btn')) return;
+    // 如果点击在关闭按钮或其图标上，直接放行，不触发拖拽
+    if (e.target.closest('#pet-toggle-btn')) {
+      return;
+    }
 
     isDragging = true;
     dragMoved = false;
@@ -205,63 +207,65 @@ export function initPet() {
     startPosX = posX;
     startPosY = posY;
 
-    avatarWrapper.setPointerCapture(e.pointerId);
-    container.classList.add('is-dragging');
+    avatarWrapper.classList.add('is-dragging');
     setAction('jumping');
-  });
 
-  avatarWrapper.addEventListener('pointermove', (e) => {
-    if (!isDragging) return;
+    const onPointerMove = (moveEvent) => {
+      if (!isDragging) return;
+      const dx = moveEvent.clientX - startPointerX;
+      const dy = moveEvent.clientY - startPointerY;
 
-    const dx = e.clientX - startPointerX;
-    const dy = e.clientY - startPointerY;
+      if (Math.hypot(dx, dy) > 4) {
+        dragMoved = true;
+      }
 
-    if (Math.hypot(dx, dy) > 5) {
-      dragMoved = true;
-    }
+      const newX = Math.min(Math.max(10, startPosX + dx), window.innerWidth - 110);
+      const newY = Math.min(Math.max(10, startPosY + dy), window.innerHeight - 130);
+      applyPosition(newX, newY);
+    };
 
-    const newX = Math.min(Math.max(10, startPosX + dx), window.innerWidth - 110);
-    const newY = Math.min(Math.max(10, startPosY + dy), window.innerHeight - 130);
-    applyPosition(newX, newY);
-  });
+    const onPointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      avatarWrapper.classList.remove('is-dragging');
 
-  avatarWrapper.addEventListener('pointerup', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    container.classList.remove('is-dragging');
-    try {
-      avatarWrapper.releasePointerCapture(e.pointerId);
-    } catch {
-      // 容错
-    }
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
 
-    // 保存位置
-    localStorage.setItem('pet-position', JSON.stringify({ x: posX, y: posY }));
+      // 保存最新位置
+      localStorage.setItem('pet-position', JSON.stringify({ x: posX, y: posY }));
 
-    // 如果只是点击，没有发生位移，则触发点击互动
-    if (!dragMoved) {
-      const poses = ['jumping', 'waving', 'waiting'];
-      const chosen = poses[Math.floor(Math.random() * poses.length)];
-      setAction(chosen, 2200);
-      randomDialogue();
-    } else {
-      setAction('idle');
-    }
-  });
+      // 如果没有发生实际位移，判定为纯点击互动
+      if (!dragMoved) {
+        const poses = ['jumping', 'waving', 'waiting'];
+        const chosen = poses[Math.floor(Math.random() * poses.length)];
+        setAction(chosen, 2200);
+        randomDialogue();
+      } else {
+        setAction('idle');
+      }
+    };
 
-  avatarWrapper.addEventListener('pointercancel', () => {
-    isDragging = false;
-    container.classList.remove('is-dragging');
-    setAction('idle');
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
   });
 
   // 收起/最小化
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', (e) => {
+    const handleClose = (e) => {
+      e.preventDefault();
       e.stopPropagation();
+      e.stopImmediatePropagation();
       container.classList.add('d-none');
       if (restoreBtn) restoreBtn.classList.remove('d-none');
       localStorage.setItem('pet-hidden', 'true');
+    };
+
+    toggleBtn.addEventListener('click', handleClose);
+    toggleBtn.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
     });
   }
 
