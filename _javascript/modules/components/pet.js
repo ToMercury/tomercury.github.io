@@ -5,19 +5,30 @@
  */
 
 const DIALOGUES = [
-  '摸鱼中... 咕噜噜~',
-  '代码写累了吗？看我原地游动！',
-  '大肥鱼今天也在这里巡逻看家哦~',
-  '报错别急，线索通常就在第一条异常附近。',
-  '戳我干嘛？不用优化 GPU Kernel 吗？',
+  // 休闲看家
+  '摸鱼中... 咕噜噜～',
+  '不打扰，就安静待着～',
   '今天也要开心摸鱼，元气满满！',
   '你专心看，我在屏幕边边守着你。',
-  '把问题缩小一点，鱼也能看懂。',
-  '咕噜噜... 吐一个透明小泡泡给你 (○ﾟεﾟ○)',
-  '离开前别忘了保存代码哦！',
   '只要我不游动，就没有人知道我在摸鱼。',
-  'CUDA 并行加速中... 性能 +100%！',
-  '按住我可以把我拖到任意喜欢的位置哦~'
+  '有活儿就有我，累了就歇歇～',
+  // 思考与代码
+  '报错别急，线索通常就在第一条异常附近。',
+  '把问题缩小一点，鱼也能看懂。',
+  '先想清楚，再动手不迟～',
+  '稳了稳了，这波稳得很！',
+  '全绿，奖励自己一口小鱼干～',
+  '测试过了，击掌～',
+  '问题不大，就是有点问题，排查一下就好～',
+  '任务清零，舒服～',
+  '思绪咕噜咕噜冒泡中...',
+  '整理一下桌面，开始吧～',
+  // 交互与拖拽
+  '戳我干嘛？不用优化 GPU Kernel 吗？',
+  '看我摆尾～ 咕噜噜 (○ﾟεﾟ○)',
+  '离开前别忘了保存代码哦！',
+  '按住我可以把我拖到屏幕任意位置哦～',
+  'CUDA 并行加速中... 性能 +100%！'
 ];
 
 export function initPet() {
@@ -130,21 +141,44 @@ export function initPet() {
     }
   }
 
-  // 巡逻慢步漫游 (自主运动)
+  // 巡逻慢步漫游 (自主运动：左右概率严格平衡)
   function wander() {
     if (isDragging || container.classList.contains('d-none')) return;
 
-    // 随机决定巡逻距离与方向 (步长 40~100px)
-    const distance = (Math.random() * 60 + 40) * (Math.random() > 0.5 ? 1 : -1);
-    let targetX = posX + distance;
-
-    // 边界限制
     const minX = 20;
     const maxX = window.innerWidth - 210;
-    if (targetX < minX) targetX = minX + 50;
-    if (targetX > maxX) targetX = maxX - 50;
+    const stepDist = Math.random() * 70 + 40; // 步长 40~110px
 
-    const walkAction = targetX > posX ? 'running-right' : 'running-left';
+    // 计算向左和向右的可行空间
+    const canMoveLeft = posX - stepDist >= minX;
+    const canMoveRight = posX + stepDist <= maxX;
+
+    let targetX = posX;
+    let walkAction;
+
+    if (canMoveLeft && canMoveRight) {
+      // 左右两边都有充足空间时，50% : 50% 严格均等
+      if (Math.random() < 0.5) {
+        targetX = posX - stepDist;
+        walkAction = 'running-left';
+      } else {
+        targetX = posX + stepDist;
+        walkAction = 'running-right';
+      }
+    } else if (canMoveLeft) {
+      // 贴近右边界，掉头向左走
+      targetX = posX - stepDist;
+      walkAction = 'running-left';
+    } else if (canMoveRight) {
+      // 贴近左边界，掉头向右走
+      targetX = posX + stepDist;
+      walkAction = 'running-right';
+    } else {
+      // 两边空间都不足时，原地跑步或挥手
+      setAction(Math.random() < 0.5 ? 'running' : 'waving', 1800);
+      return;
+    }
+
     setAction(walkAction);
 
     const startTime = performance.now();
@@ -169,22 +203,28 @@ export function initPet() {
     requestAnimationFrame(step);
   }
 
-  // 周期性漫步与对话
+  // 周期性漫步与动作交互 (覆盖所有 9 种动作)
   function scheduleNextWander() {
     clearTimeout(wanderTimer);
-    // 12 到 25 秒触发一次偶发运动或互动
-    const nextInterval = Math.random() * 13000 + 12000;
+    // 10 到 20 秒触发一次自主行动
+    const nextInterval = Math.random() * 10000 + 10000;
     wanderTimer = setTimeout(() => {
       if (!isDragging && !container.classList.contains('d-none')) {
         const rand = Math.random();
         if (rand < 0.45) {
-          wander();
-        } else if (rand < 0.7) {
-          setAction('waving', 2000);
-        } else if (rand < 0.85) {
-          setAction('jumping', 1800);
+          wander(); // 巡逻慢跑 (running-left / running-right)
+        } else if (rand < 0.6) {
+          setAction('waving', 2200); // 招手打招呼
+        } else if (rand < 0.72) {
+          setAction('jumping', 1800); // 欢呼跳跃
+        } else if (rand < 0.82) {
+          setAction('waiting', 2500); // 发呆思考等回复
+        } else if (rand < 0.90) {
+          setAction('review', 2400); // 认真整理润色
+        } else if (rand < 0.95) {
+          setAction('running', 1800); // 原地欢快小跑
         } else {
-          randomDialogue();
+          randomDialogue(); // 冒泡语录
         }
       }
       scheduleNextWander();
@@ -238,7 +278,7 @@ export function initPet() {
 
       // 如果没有发生实际位移，判定为纯点击互动
       if (!dragMoved) {
-        const poses = ['jumping', 'waving', 'waiting'];
+        const poses = ['jumping', 'waving', 'waiting', 'review', 'running'];
         const chosen = poses[Math.floor(Math.random() * poses.length)];
         setAction(chosen, 2200);
         randomDialogue();
