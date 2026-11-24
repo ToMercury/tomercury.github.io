@@ -1,0 +1,362 @@
+/* Skills page custom styles */
+
+.skills-arch-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 1.5rem;
+  width: 100%;
+
+  .tier-box {
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.85rem 1.25rem;
+    text-align: center;
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--main-border-color);
+    box-shadow: var(--card-shadow, 0 2px 8px rgb(0 0 0 / 4%));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &.tier-ai {
+      background-color: rgb(147 51 234 / 5%);
+      border: 1.5px solid rgb(147 51 234 / 55%);
+
+      .tier-name {
+        color: #7e22ce;
+      }
+    }
+
+    &.tier-core {
+      background-color: rgb(22 163 74 / 6%);
+      border: 2px solid rgb(22 163 74 / 65%);
+
+      .tier-name {
+        color: #15803d;
+      }
+    }
+
+    &.tier-linux {
+      background-color: rgb(234 88 12 / 5%);
+      border: 1.5px solid rgb(234 88 12 / 55%);
+
+      .tier-name {
+        color: #c2410c;
+      }
+    }
+
+    .tier-name {
+      font-size: 1.32rem;
+      font-weight: normal;
+      margin-bottom: 0.2rem;
+      color: var(--heading-color);
+    }
+
+    .tier-sub {
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: var(--text-muted-color);
+      margin-bottom: 0.4rem;
+    }
+
+    .tier-keywords {
+      font-size: 1.02rem;
+      font-weight: normal;
+      color: var(--text-color);
+      letter-spacing: 0.2px;
+      line-height: 1.5;
+    }
+  }
+
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.45rem 0;
+    gap: 0.2rem;
+    color: var(--text-color);
+
+    .arrow-icons {
+      display: flex;
+      gap: 0.4rem;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    .pill-badge {
+      background-color: rgb(22 163 74 / 12%);
+      color: #15803d;
+      border: 1.5px solid rgb(22 163 74 / 45%);
+      padding: 0.2rem 0.9rem;
+      border-radius: 1rem;
+      font-size: 0.88rem;
+      font-weight: normal;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+/* Skills Matrix Stacked Cards */
+
+.skills-matrix-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 1.25rem 0 2rem;
+  width: 100%;
+
+  .matrix-card {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--main-border-color);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    box-shadow: var(--card-shadow, 0 2px 8px rgb(0 0 0 / 4%));
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &.card-core {
+      border: 2px solid rgb(22 163 74 / 60%);
+
+      .matrix-title {
+        color: #15803d;
+      }
+    }
+
+    &.card-ai {
+      border: 1.5px solid rgb(147 51 234 / 55%);
+
+      .matrix-title {
+        color: #7e22ce;
+      }
+    }
+
+    &.card-linux {
+      border: 1.5px solid rgb(234 88 12 / 55%);
+
+      .matrix-title {
+        color: #c2410c;
+      }
+    }
+
+    &.card-eng {
+      border: 1.5px solid rgb(2 132 199 / 55%);
+
+      .matrix-title {
+        color: #0284c7;
+      }
+    }
+
+    .matrix-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1.5px solid var(--main-border-color);
+    }
+
+    .matrix-title {
+      font-size: 1.18rem;
+      font-weight: normal;
+      color: var(--heading-color);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    /* Fixed equal size badge (Identical width & height, text centered) */
+    .matrix-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 8rem;
+      height: 1.85rem;
+      box-sizing: border-box;
+      font-size: 0.88rem;
+      font-weight: normal;
+      border-radius: 6px;
+      border: 1.5px solid transparent;
+      line-height: 1;
+
+      &.badge-core {
+        background-color: rgb(22 163 74 / 15%);
+        color: #15803d;
+        border-color: rgb(22 163 74 / 50%);
+      }
+
+      &.badge-ai {
+        background-color: rgb(147 51 234 / 12%);
+        color: #9333ea;
+        border-color: rgb(147 51 234 / 45%);
+      }
+
+      &.badge-linux {
+        background-color: rgb(234 88 12 / 12%);
+        color: #ea580c;
+        border-color: rgb(234 88 12 / 45%);
+      }
+    }
+
+    .matrix-desc {
+      font-size: 0.98rem;
+      font-weight: normal;
+      color: var(--text-muted-color);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    /* 3x2 Grid for 6 skills: Single-line height, equal size, centered text */
+    .matrix-chips-grid,
+    .eng-chips-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      width: 100%;
+
+      @media (max-width: 650px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .m-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 2.45rem;
+        font-size: 0.92rem;
+        font-weight: normal;
+        white-space: nowrap;
+        background-color: var(--button-bg);
+        border: 1.5px solid rgb(0 0 0 / 12%);
+        color: var(--text-color);
+        padding: 0 0.45rem;
+        border-radius: 6px;
+        box-sizing: border-box;
+
+        i {
+          font-size: 0.98rem;
+          opacity: 0.85;
+          flex-shrink: 0;
+          margin-right: 0.35rem;
+        }
+      }
+    }
+  }
+}
+
+/* Dark mode theme adjustments */
+
+html[data-mode='dark'] {
+  .skills-arch-diagram {
+    .tier-box {
+      &.tier-ai {
+        background-color: rgb(192 132 252 / 6%);
+        border-color: rgb(192 132 252 / 50%);
+
+        .tier-name {
+          color: #c084fc;
+        }
+      }
+
+      &.tier-core {
+        background-color: rgb(34 197 94 / 7%);
+        border-color: rgb(34 197 94 / 60%);
+
+        .tier-name {
+          color: #4ade80;
+        }
+      }
+
+      &.tier-linux {
+        background-color: rgb(251 146 60 / 6%);
+        border-color: rgb(251 146 60 / 50%);
+
+        .tier-name {
+          color: #fb923c;
+        }
+      }
+    }
+
+    .connector {
+      .pill-badge {
+        background-color: rgb(34 197 94 / 15%);
+        color: #4ade80;
+        border-color: rgb(34 197 94 / 50%);
+      }
+    }
+  }
+
+  .skills-matrix-grid {
+    .matrix-card {
+      &.card-core {
+        border-color: rgb(34 197 94 / 60%);
+
+        .matrix-title {
+          color: #4ade80;
+        }
+      }
+
+      &.card-ai {
+        border-color: rgb(192 132 252 / 50%);
+
+        .matrix-title {
+          color: #c084fc;
+        }
+      }
+
+      &.card-linux {
+        border-color: rgb(251 146 60 / 50%);
+
+        .matrix-title {
+          color: #fb923c;
+        }
+      }
+
+      &.card-eng {
+        border-color: rgb(56 189 248 / 50%);
+
+        .matrix-title {
+          color: #38bdf8;
+        }
+      }
+
+      .matrix-badge {
+        &.badge-core {
+          background-color: rgb(34 197 94 / 15%);
+          color: #4ade80;
+          border-color: rgb(34 197 94 / 50%);
+        }
+
+        &.badge-ai {
+          background-color: rgb(192 132 252 / 15%);
+          color: #c084fc;
+          border-color: rgb(192 132 252 / 50%);
+        }
+
+        &.badge-linux {
+          background-color: rgb(251 146 60 / 15%);
+          color: #fb923c;
+          border-color: rgb(251 146 60 / 50%);
+        }
+      }
+
+      .matrix-chips-grid .m-chip,
+      .eng-chips-row .m-chip {
+        border-color: rgb(255 255 255 / 12%);
+      }
+    }
+  }
+}

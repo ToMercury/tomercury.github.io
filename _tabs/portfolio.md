@@ -16,6 +16,7 @@ order: 4
     <button type="button" class="filter-btn" data-filter="books">书籍著作</button>
     <button type="button" class="filter-btn" data-filter="projects">核心项目</button>
     <button type="button" class="filter-btn" data-filter="tools">开源工具</button>
+    <button type="button" class="filter-btn" data-filter="crafts">生活手作</button>
   </div>
 
   <div class="portfolio-grid" id="portfolio-grid">
