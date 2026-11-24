@@ -4,6 +4,8 @@
 /* Pet Container Floating Widget */
 .pet-container {
   position: fixed;
+  right: 1.5rem;
+  bottom: calc(v.$footer-height-large + 0.5rem);
   z-index: 1050;
   display: flex;
   flex-direction: column;
@@ -12,6 +14,11 @@
   touch-action: none;
   contain: layout style;
   transition: opacity 0.3s ease;
+
+  @include bp.lg {
+    right: 2.2rem;
+    bottom: calc(v.$footer-height + 0.8rem);
+  }
 
   /* 对话气泡 (深海蓝黑玻璃设计) */
   .pet-bubble {
