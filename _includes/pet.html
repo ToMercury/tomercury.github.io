@@ -1,21 +1,20 @@
-<!-- Desktop Pet: 大肥鱼 (Big Fat Fish) -->
+<!-- Desktop Pet: 大肥鱼 (Big Fat Fish) - 动画交互逐帧挂件 -->
 <div id="pet-container" class="pet-container" role="region" aria-label="大肥鱼桌宠">
   <!-- 对话气泡 -->
   <div id="pet-bubble" class="pet-bubble" aria-live="polite">
     <span id="pet-dialogue">摸鱼中... 咕噜噜~</span>
   </div>
 
-  <!-- 桌宠本体交互区 -->
-  <div id="pet-avatar-wrapper" class="pet-avatar-wrapper" title="点击和大肥鱼互动">
+  <!-- 桌宠本体交互区（支持拖拽、点击、自律游动漫步） -->
+  <div id="pet-avatar-wrapper" class="pet-avatar-wrapper" title="可点击互动或拖拽大肥鱼">
     <img
       id="pet-avatar"
       class="pet-avatar"
-      src="{{ '/assets/img/pet/pet_idle.png' | relative_url }}"
+      src="{{ '/assets/img/pet/idle.gif' | relative_url }}"
       alt="大肥鱼桌宠"
-      width="90"
-      height="120"
+      width="96"
+      height="104"
       draggable="false"
-      loading="lazy"
     >
     <div class="pet-shadow"></div>
   </div>
@@ -28,5 +27,5 @@
 
 <!-- 最小化后恢复的小图标 -->
 <button id="pet-restore-btn" class="pet-restore-btn d-none" type="button" aria-label="唤醒大肥鱼" title="唤醒大肥鱼">
-  <img src="{{ '/assets/img/pet/pet_idle.png' | relative_url }}" alt="大肥鱼" width="28" height="37">
+  <img src="{{ '/assets/img/pet/idle.gif' | relative_url }}" alt="大肥鱼" width="28" height="30">
 </button>
